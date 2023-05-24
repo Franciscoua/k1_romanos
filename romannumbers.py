@@ -1,10 +1,71 @@
-simbolos = {
-    1:"I",
-    5:"V",
-    10:"X"
-}
-
 def entero_a_romano(n_int):
+    if n_int < 1:
+        return ""
+
+    simbolos_valores_superiores = {
+        4000000: "((IV))",
+        1000000: "M",
+        900000: "CM",
+        500000: "D",
+        400000: "CD",
+        100000: "C",
+        90000: "XC",
+        50000: "L",
+        40000: "XL",
+        10000: "X",
+        9000: "IX",
+        5000: "V",
+        4000: "IV",
+        1000: "I"
+    }
+
+    simbolos_valores_inferiores = {
+        1000: "M",
+        900: "CM",
+        500: "D",
+        400: "CD",
+        100: "C",
+        90: "XC",
+        50: "L",
+        40: "XL",
+        10: "X",
+        9: "IX",
+        5: "V",
+        4: "IV",
+        1: "I"
+    }
+
+    resultado_vs = ""
+    resultado_vi = ""
+
+    if n_int >= 4000:
+        for valor, simbolo in simbolos_valores_superiores.items():
+            while n_int >= valor:
+                n_int -= valor
+                resultado_vs += simbolo
+
+    for valor, simbolo in simbolos_valores_inferiores.items():
+        while n_int >= valor:
+            n_int -= valor
+            resultado_vi += simbolo
+
+    if resultado_vs:
+        resultado_vs = f"({resultado_vs})"
+
+    resultado = resultado_vs + resultado_vi
+
+    return resultado
+
+if __name__ == "__main__":
+    resultado = entero_a_romano(45)
+    print(resultado)
+
+
+
+
+
+
+"""        
     if n_int in simbolos:
         return simbolos[n_int]
     
@@ -16,26 +77,4 @@ def entero_a_romano(n_int):
     else:
         multiplicador = n_int -5
         return simbolos[5] + multiplicador * simbolos[1]
-    
-
-
-if __name__ == "__main__":
-    print(entero_a_romano(6))
-
-
-
-
-"""
-def entero_a_romano(n_int):
-    if n_int < 1 or n_int > 3999:
-        return "Número fuera de rango"
-    
-    # Definimos las listas con los símbolos romanos para unidades, decenas, centenas y miles
-    unidades = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
-    decenas = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
-    centenas = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
-    miles = ["", "M", "MM", "MMM"]
-    
-    # Convertimos el número a romano concatenando los símbolos de cada lista de acuerdo a su posición
-    return miles[n_int // 1000] + centenas[(n_int % 1000) // 100] + decenas[(n_int % 100) // 10] + unidades[n_int % 10]
 """
