@@ -1,9 +1,12 @@
+class RomanNumberError(Exception):
+    pass
+
 def entero_a_romano(n_int):
     if n_int < 1:
         return ""
 
     simbolos_valores_superiores = {
-        4000000: "((IV))",
+        4000000: "(IV)",
         1000000: "M",
         900000: "CM",
         500000: "D",
@@ -56,8 +59,12 @@ def entero_a_romano(n_int):
 
     return resultado
 
+
+
+
+
 if __name__ == "__main__":
-    resultado = entero_a_romano(45)
+    resultado = entero_a_romano(4000000)
     print(resultado)
 
 
@@ -66,15 +73,7 @@ if __name__ == "__main__":
 
 
 """        
-    if n_int in simbolos:
-        return simbolos[n_int]
-    
-    if n_int < 4:
-        return n_int * simbolos[1]
-    elif n_int == 4:
-        
-        return simbolos[1] + simbolos[5]
-    else:
-        multiplicador = n_int -5
-        return simbolos[5] + multiplicador * simbolos[1]
+La ventaja del código es la simpleza (quiero decir, el algoritmo con los dos fors). La desventaja es que has aumentado el límite de 4000 a 4000000 pero el 
+problema es el mismo. Si lograras, con esta filosofía, hacer un formato comun y escalable seria genial.
+Así a bote pronto date cuenta que lo que cambian de valores inveriores a valores superiores es que multiplicas por mil las claves. Ahí hay un hilo del que tirar
 """

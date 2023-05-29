@@ -1,4 +1,4 @@
-from romannumbers_calase import romano_a_entero, RomanNumberError
+"""from romannumbers_calase import romano_a_entero, RomanNumberError
 import pytest
 
 def test_simbolos():    
@@ -70,4 +70,96 @@ def test_no_repeticion_de_restas():
 
 def test_random():
     romano_a_entero("MCMXCIX") == 1999
+
+
+
+def test_suma():
+    romano1 = RomanNumber(10)
+    romano2 = RomanNumber(5)
+    resultado = romano1 + romano2
+    assert resultado.numero == 15
+    assert resultado.simbolo == "XV"
+
+    romano1 = RomanNumber("C")
+    romano2 = RomanNumber(45)
+    resultado = romano1 + romano2
+    assert resultado.numero == 145
+    assert resultado.simbolo == "CXLV"
+
+    romano1 = RomanNumber("MM")
+    romano2 = RomanNumber(5)
+    resultado = romano1 + romano2
+    assert resultado.numero == 2005
+    assert resultado.simbolo == "MMV"
+
+def test_resta():
+    romano1 = RomanNumber(10)
+    romano2 = RomanNumber(5)
+    resultado = romano1 - romano2
+    assert resultado.numero == 5
+    assert resultado.simbolo == "V"
+
+    romano1 = RomanNumber(10)
+    romano2 = RomanNumber(10)
+    resultado = romano1 - romano2
+    assert resultado.numero == 0
+    assert resultado.simbolo == ""
+
+    romano1 = RomanNumber("CCLXII")
+    romano2 = RomanNumber(5)
+    resultado = romano1 - romano2
+    assert resultado.numero == 257
+    assert resultado.simbolo == "CCLVII"
+
+def test_suma_resultado_negativo():
+    romano1 = RomanNumber(5)
+    romano2 = RomanNumber(-8)
+    with pytest.raises(RomanNumberError):
+        resultado = romano1 + romano2
+
+def test_resta_resultado_negativo():
+    romano1 = RomanNumber(10)
+    romano2 = RomanNumber(15)
+    with pytest.raises(RomanNumberError):
+        resultado = romano1 - romano2
+
+
+def test_division():
+    romano1 = RomanNumber(50)
+    romano2 = RomanNumber(10)
+    resultado = romano1 / romano2
+    assert resultado.numero == 5
+    assert resultado.simbolo == "V"
+
+    romano1 = RomanNumber(500)
+    romano2 = RomanNumber("II")
+    resultado = romano1 / romano2
+    assert resultado.numero == 250
+    assert resultado.simbolo == "CCL"
+
+    romano1 = RomanNumber("MM")
+    romano2 = RomanNumber(5)
+    resultado = romano1 / romano2
+    assert resultado.numero == 400
+    assert resultado.simbolo == "CD"
+
+    romano1 = RomanNumber(8)
+    romano2 = RomanNumber(3)
+    resultado = romano1 / romano2
+    assert resultado.numero == 2
+    assert resultado.simbolo == "II"
+
+def test_multiplicacion_resultado_negativo():
+    romano1 = RomanNumber(5)
+    romano2 = RomanNumber(-8)
+    with pytest.raises(RomanNumberError):
+        resultado = romano1 * romano2
+
+def test_division_por_cero():
+    romano1 = RomanNumber(10)
+    romano2 = RomanNumber(0)
+    with pytest.raises(ZeroDivisionError):
+        resultado = romano1 / romano2
+
+def test_division_resultado_negativo():"""
        

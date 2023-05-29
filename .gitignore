@@ -3,3 +3,6 @@ mi_entorno_v/
 **__pycache__
 romannumbers.py
 test_romannumbers.py
+pruebas.py
+cromannumbers.py
+test_pruebas.py
